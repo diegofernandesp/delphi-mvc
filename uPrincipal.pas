@@ -83,7 +83,7 @@ function TfMasterDetail.GetVendaItemFilters: IDatasetFilter;
 var
   DsFilter: IDatasetFilter;
 begin
-  DsFilter := TDatasetFilter.Create;
+  DsFilter := TDatasetFilter.New;
   DsFilter.Add('VENDA_ID', dfEqual, dsVenda.DataSet.FieldByName('ID').Value);
   Result := DsFilter;
 end;

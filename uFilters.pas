@@ -30,6 +30,7 @@ type
     procedure Add(AColumn: string; AKind: TDatasetFilterKind; AValue: Variant);
     function AsSql: string;
     procedure Clear;
+    class function New: IDatasetFilter;
   end;
 
   function FilterKindToStr(ADatasetFilterType: TDatasetFilterKind): string;
@@ -87,7 +88,7 @@ var
     StrFilter := sLineBreak + 'where 1=1';
     for Filter in FFilters do
       StrFilter := StrFilter + sLineBreak + 'and '
-      + Filter.Column + FilterKindToStr(Filter.Kind) + GetFormatedParamValue(Filter.Value);
+        + Filter.Column + FilterKindToStr(Filter.Kind) + GetFormatedParamValue(Filter.Value);
   end;
 
 begin
@@ -109,6 +110,11 @@ destructor TDatasetFilter.Destroy;
 begin
   FFilters.Free;
   inherited;
+end;
+
+class function TDatasetFilter.New: IDatasetFilter;
+begin
+  Result := Self.Create;
 end;
 
 end.
