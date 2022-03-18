@@ -21,7 +21,6 @@ type
   IDatasetJoin = Interface
     function AsString: String;
     procedure Add(ADatasetJoinType: TDatasetJoinType);
-    //procedure Add(AJoinKind: TJoinKind; ASourceTable, ATargetTable, ASourceField, ATargetField: string);
   End;
 
   TDatasetJoin = class(TInterfacedObject, IDatasetJoin)
@@ -31,7 +30,6 @@ type
     constructor Create;
     destructor Destroy; override;
     function AsString: string;
-    //procedure Add(AJoinKind: TJoinKind; ASourceTable, ATargetTable, ASourceField, ATargetField: string);
     procedure Add(ADatasetJoinType: TDatasetJoinType);
     class function New: IDatasetJoin;
   end;
@@ -42,20 +40,6 @@ uses
 
 { TDatasetJoin }
 
-{procedure TDatasetJoin.Add(AJoinKind: TJoinKind; ASourceTable, ATargetTable,
-  ASourceField, ATargetField: string);
-var
-  DatasetJoinType: TDatasetJoinType;
-begin
-  DatasetJoinType.JoinKind    := AJoinKind;
-  DatasetJoinType.SourceTable := ASourceTable;
-  DatasetJoinType.SourceField := ASourceField;
-  DatasetJoinType.TargetTable := ATargetTable;
-  DatasetJoinType.TargetField := ATargetField;
-
-  FJoins.Add(DatasetJoinType);
-end;
- }
 procedure TDatasetJoin.Add(ADatasetJoinType: TDatasetJoinType);
 begin
   FJoins.Add(ADatasetJoinType);
