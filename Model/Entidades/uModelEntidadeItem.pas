@@ -8,7 +8,7 @@ uses
 Type
   TModelEntidadeItem = class(TModelEntidadeTabela)
   public
-    constructor Create; override;
+    constructor Create;
     destructor Destroy; override;
     class function New : IModelEntidade;
   end;

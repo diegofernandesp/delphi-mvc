@@ -17,10 +17,8 @@ object fMasterDetail: TfMasterDetail
   object Splitter1: TSplitter
     Left = 388
     Top = 41
-    Width = 13
+    Width = 4
     Height = 573
-    ExplicitLeft = 197
-    ExplicitTop = 33
   end
   object Panel1: TPanel
     Left = 0
@@ -30,14 +28,14 @@ object fMasterDetail: TfMasterDetail
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    object RzBitBtn1: TRzBitBtn
+    object bRun: TRzBitBtn
       Left = 3
       Top = 3
       Width = 78
       Height = 35
       Caption = 'Run'
       TabOrder = 0
-      OnClick = RzBitBtn1Click
+      OnClick = bRunClick
     end
   end
   object Panel2: TPanel
@@ -58,7 +56,6 @@ object fMasterDetail: TfMasterDetail
       Height = 533
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 312
       object gridUniDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         OnFocusedRecordChanged = gridUniDBTableView1FocusedRecordChanged
@@ -87,30 +84,29 @@ object fMasterDetail: TfMasterDetail
       DataSource = dsVenda
       Align = alTop
       TabOrder = 1
-      ExplicitWidth = 312
     end
   end
   object Panel3: TPanel
     AlignWithMargins = True
-    Left = 404
+    Left = 395
     Top = 44
-    Width = 581
+    Width = 590
     Height = 567
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel3'
     TabOrder = 2
-    ExplicitLeft = 340
-    ExplicitWidth = 185
+    ExplicitLeft = 404
+    ExplicitWidth = 581
     object gridItm: TcxGrid
       AlignWithMargins = True
       Left = 3
       Top = 31
-      Width = 575
+      Width = 584
       Height = 533
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 179
+      ExplicitWidth = 575
       object gridItmDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsVendaItem
@@ -141,12 +137,12 @@ object fMasterDetail: TfMasterDetail
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 575
+      Width = 584
       Height = 22
       DataSource = dsVendaItem
       Align = alTop
       TabOrder = 1
-      ExplicitWidth = 200
+      ExplicitWidth = 575
     end
   end
   object dsVenda: TDataSource
@@ -154,7 +150,7 @@ object fMasterDetail: TfMasterDetail
     Top = 184
   end
   object dsVendaItem: TDataSource
-    Left = 912
-    Top = 96
+    Left = 552
+    Top = 200
   end
 end

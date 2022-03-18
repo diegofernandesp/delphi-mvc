@@ -14,7 +14,7 @@ uses
 
 type
   TfMasterDetail = class(TForm)
-    RzBitBtn1: TRzBitBtn;
+    bRun: TRzBitBtn;
     DBNavigator1: TDBNavigator;
     dsVenda: TDataSource;
     Splitter1: TSplitter;
@@ -35,7 +35,7 @@ type
     gridItmDBTableView1Column2: TcxGridDBColumn;
     gridItmDBTableView1Column3: TcxGridDBColumn;
     gridItmDBTableView1Column4: TcxGridDBColumn;
-    procedure RzBitBtn1Click(Sender: TObject);
+    procedure bRunClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure gridUniDBTableView1FocusedRecordChanged(
       Sender: TcxCustomGridTableView; APrevFocusedRecord,
@@ -66,7 +66,9 @@ begin
       .Entidades
         .VendaItem
         .DataSet(dsVendaItem)
-      .Open(GetVendaItemFilters);
+        .Filter(GetVendaItemFilters)
+        .Select(['*'])
+      .Open;
   end;
 end;
 
@@ -85,12 +87,13 @@ begin
   Result := DsFilter;
 end;
 
-procedure TfMasterDetail.RzBitBtn1Click(Sender: TObject);
+procedure TfMasterDetail.bRunClick(Sender: TObject);
 begin
   FControllerVenda
     .Entidades
       .Venda
       .DataSet(dsVenda)
+      .Select(['Id', 'Pedido'])
     .Open;
 end;
 

@@ -13,11 +13,13 @@ Type
     var TableName: String;
     FQuery: iModelQuery;
     FSQL: String;
+    FFieldList: String;
+    function GetFormatedSql: String;
   public
     function DataSet(aValue : TDataSource) : IModelEntidade;
-    procedure Open(ADatasetFilter: IDatasetFilter); overload;
     procedure Open; overload;
-    constructor Create; virtual;
+    function Filter(ADatasetFilter: IDatasetFilter): IModelEntidade;
+    function Select(AFields: array of string): IModelEntidade;
   end;
 
 implementation
@@ -27,26 +29,41 @@ uses
 
 { TModelEntidadeProduto }
 
-constructor TModelEntidadeTabela.Create;
-begin
-  FSQL := Format('select * from %s', [TableName]);
-end;
-
 function TModelEntidadeTabela.DataSet(aValue: TDataSource): IModelEntidade;
 begin
   Result := Self;
   aValue.DataSet := TDataSet(FQuery.Query);
 end;
 
-procedure TModelEntidadeTabela.Open(ADatasetFilter: IDatasetFilter);
+function TModelEntidadeTabela.Filter(
+  ADatasetFilter: IDatasetFilter): IModelEntidade;
 begin
+  Result := Self;
   FFormatedFilters := ADatasetFilter.AsSql;
-  Open;
+end;
+
+function TModelEntidadeTabela.GetFormatedSql: String;
+begin
+  REsult := 'select ' + FFieldList + ' from ' + TableName + sLineBreak
+    + FFormatedFilters;
 end;
 
 procedure TModelEntidadeTabela.Open;
 begin
-  FQuery.Open(FSql + FFormatedFilters);
+  FQuery.Open(GetFormatedSql);
+end;
+
+function TModelEntidadeTabela.Select(AFields: array of string): IModelEntidade;
+var
+  Field: String;
+begin
+  Result := Self;
+
+  FFieldList := '';
+  for Field in AFields do
+    FFieldList := FFieldList + Field + ', ';
+
+  Delete(FFieldList, Length(FFieldList)-1, 2);
 end;
 
 end.

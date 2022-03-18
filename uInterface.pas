@@ -24,7 +24,8 @@ type
 
   IModelEntidade = interface
     function DataSet ( aValue : TDataSource ) : IModelEntidade;
-    procedure Open(ADatasetFilter: IDatasetFilter); overload;
+    function Filter(ADatasetFilter: IDatasetFilter): IModelEntidade;
+    function Select(AFields: array of String): IModelEntidade;
     procedure Open; overload;
   end;
 
