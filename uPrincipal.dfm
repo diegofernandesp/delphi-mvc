@@ -96,8 +96,6 @@ object fMasterDetail: TfMasterDetail
     BevelOuter = bvNone
     Caption = 'Panel3'
     TabOrder = 2
-    ExplicitLeft = 404
-    ExplicitWidth = 581
     object gridItm: TcxGrid
       AlignWithMargins = True
       Left = 3
@@ -106,7 +104,6 @@ object fMasterDetail: TfMasterDetail
       Height = 533
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 575
       object gridItmDBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsVendaItem
@@ -142,7 +139,6 @@ object fMasterDetail: TfMasterDetail
       DataSource = dsVendaItem
       Align = alTop
       TabOrder = 1
-      ExplicitWidth = 575
     end
   end
   object dsVenda: TDataSource

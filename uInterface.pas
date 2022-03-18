@@ -26,6 +26,7 @@ type
     function DataSet ( aValue : TDataSource ) : IModelEntidade;
     function Filter(ADatasetFilter: IDatasetFilter): IModelEntidade;
     function Select(AFields: array of String): IModelEntidade;
+    function OrderBy(AFields: array of String): IModelEntidade;
     procedure Open; overload;
   end;
 

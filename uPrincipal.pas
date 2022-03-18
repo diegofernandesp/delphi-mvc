@@ -67,6 +67,7 @@ begin
         .VendaItem
         .DataSet(dsVendaItem)
         .Filter(GetVendaItemFilters)
+        .OrderBy(['Quantidade'])
         .Select(['*'])
       .Open;
   end;
@@ -92,6 +93,7 @@ begin
   FControllerVenda
     .Entidades
       .Venda
+      .OrderBy(['Pedido'])
       .DataSet(dsVenda)
       .Select(['Id', 'Pedido'])
     .Open;

@@ -14,18 +14,21 @@ Type
     FQuery: iModelQuery;
     FSQL: String;
     FFieldList: String;
+    FOrderByList: String;
     function GetFormatedSql: String;
   public
     function DataSet(aValue : TDataSource) : IModelEntidade;
     procedure Open; overload;
     function Filter(ADatasetFilter: IDatasetFilter): IModelEntidade;
     function Select(AFields: array of string): IModelEntidade;
+    function OrderBy(AFields: array of string): IModelEntidade;
   end;
 
 implementation
 
 uses
-  uModelConexaoFactory, System.Variants, StrUtils, System.SysUtils;
+  uModelConexaoFactory, System.Variants, System.SysUtils,
+  System.StrUtils;
 
 { TModelEntidadeProduto }
 
@@ -44,13 +47,27 @@ end;
 
 function TModelEntidadeTabela.GetFormatedSql: String;
 begin
-  REsult := 'select ' + FFieldList + ' from ' + TableName + sLineBreak
-    + FFormatedFilters;
+  Result := 'select ' + FFieldList + ' from ' + TableName + sLineBreak
+    + FFormatedFilters + sLineBreak
+    + IfThen(not FOrderByList.IsEmpty, 'order by ' + FOrderByList, '');
 end;
 
 procedure TModelEntidadeTabela.Open;
 begin
   FQuery.Open(GetFormatedSql);
+end;
+
+function TModelEntidadeTabela.OrderBy(AFields: array of string): IModelEntidade;
+var
+  Field: String;
+begin
+  Result := Self;
+
+  FOrderByList := '';
+  for Field in AFields do
+    FOrderByList := FOrderByList + Field + ', ';
+
+  Delete(FOrderByList, Length(FOrderByList)-1, 2);
 end;
 
 function TModelEntidadeTabela.Select(AFields: array of string): IModelEntidade;
