@@ -33,7 +33,7 @@ object fMasterDetail: TfMasterDetail
       Top = 3
       Width = 78
       Height = 35
-      Caption = 'Run'
+      Caption = 'Process'
       TabOrder = 0
       OnClick = bRunClick
     end
