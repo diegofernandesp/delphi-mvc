@@ -112,10 +112,10 @@ object fMasterDetail: TfMasterDetail
         DataController.Summary.SummaryGroups = <>
         OptionsSelection.CellSelect = False
         object gridItmDBTableView1Column1: TcxGridDBColumn
-          DataBinding.FieldName = 'VENDA_ID'
+          DataBinding.FieldName = 'CODIGO'
         end
         object gridItmDBTableView1Column2: TcxGridDBColumn
-          DataBinding.FieldName = 'ITEM_ID'
+          DataBinding.FieldName = 'DESCRICAO'
         end
         object gridItmDBTableView1Column3: TcxGridDBColumn
           DataBinding.FieldName = 'QUANTIDADE'

@@ -3,7 +3,7 @@ unit uModelFiredacQuery;
 interface
 
 uses
-  uInterface, FireDAC.Comp.Client, uFilters, Firedac.Stan.Param;
+  uInterface, FireDAC.Comp.Client, Firedac.Stan.Param;
 
 Type
   TModelFiredacQuery = class(TInterfacedObject, iModelQuery)

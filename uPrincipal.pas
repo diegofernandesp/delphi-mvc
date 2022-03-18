@@ -10,7 +10,7 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog, Data.DB, cxDBData,
   RzButton, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, Vcl.ExtCtrls, Vcl.DBCtrls,
-  Vcl.Grids, Vcl.DBGrids, uFilters;
+  Vcl.Grids, Vcl.DBGrids, uFilter, uJoin;
 
 type
   TfMasterDetail = class(TForm)
@@ -67,7 +67,8 @@ begin
         .VendaItem
         .DataSet(dsVendaItem)
         .Filter(GetVendaItemFilters)
-        .OrderBy(['Quantidade'])
+        .OrderBy(['quantidade'])
+        .Join(jkInner, 'itens', 'item_id', 'id')
         .Select(['*'])
       .Open;
   end;

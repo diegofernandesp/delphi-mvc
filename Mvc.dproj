@@ -109,11 +109,12 @@
         <DCCReference Include="uModelConexaoFactory.pas"/>
         <DCCReference Include="uModelEntidadesFactory.pas"/>
         <DCCReference Include="Controller\uController.pas"/>
-        <DCCReference Include="uFilters.pas"/>
+        <DCCReference Include="uFilter.pas"/>
         <DCCReference Include="Model\Entidades\uModelEntidadeTabela.pas"/>
         <DCCReference Include="Model\Entidades\uModelEntidadeItem.pas"/>
         <DCCReference Include="Model\Entidades\uModelEntidadeVenda.pas"/>
         <DCCReference Include="Model\Entidades\uModelEntidadeVendaItem.pas"/>
+        <DCCReference Include="uJoin.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

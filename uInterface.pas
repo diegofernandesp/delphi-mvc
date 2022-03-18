@@ -2,7 +2,7 @@ unit uInterface;
 
 interface
 
-uses DB, uFilters;
+uses DB, uFilter, uJoin;
 
 type
   iModelQuery = interface;
@@ -27,6 +27,7 @@ type
     function Filter(ADatasetFilter: IDatasetFilter): IModelEntidade;
     function Select(AFields: array of String): IModelEntidade;
     function OrderBy(AFields: array of String): IModelEntidade;
+    function Join(AJoinKind: TJoinKind; ATable, AField, ATargetField: String): IModelEntidade; overload;
     procedure Open; overload;
   end;
 
