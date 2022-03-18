@@ -3,34 +3,42 @@ unit uModelEntidadeTabela;
 interface
 
 uses
-  uInterface, Data.DB, uFilters;
+  uInterface, Data.DB, uFilter, uJoin;
 
-Type
+type
   TModelEntidadeTabela = class(TInterfacedObject, IModelEntidade)
   private
     FFormatedFilters: string;
+    FFieldList: String;
+    FOrderByList: String;
+    DatasetJoin: IDatasetJoin;
+    function GetFormatedSql: String;
   protected
     var TableName: String;
     FQuery: iModelQuery;
-    FSQL: String;
-    FFieldList: String;
-    FOrderByList: String;
-    function GetFormatedSql: String;
   public
+    constructor Create; virtual;
     function DataSet(aValue : TDataSource) : IModelEntidade;
     procedure Open; overload;
     function Filter(ADatasetFilter: IDatasetFilter): IModelEntidade;
     function Select(AFields: array of string): IModelEntidade;
     function OrderBy(AFields: array of string): IModelEntidade;
+    function Join(AJoinKind: TJoinKind; ATargetTable: string; ASourceField: string;
+      ATargetField: string): IModelEntidade;
   end;
 
 implementation
 
 uses
   uModelConexaoFactory, System.Variants, System.SysUtils,
-  System.StrUtils;
+  System.StrUtils, Vcl.Dialogs;
 
 { TModelEntidadeProduto }
+
+constructor TModelEntidadeTabela.Create;
+begin
+  DatasetJoin := TDatasetJoin.Create;
+end;
 
 function TModelEntidadeTabela.DataSet(aValue: TDataSource): IModelEntidade;
 begin
@@ -47,9 +55,20 @@ end;
 
 function TModelEntidadeTabela.GetFormatedSql: String;
 begin
-  Result := 'select ' + FFieldList + ' from ' + TableName + sLineBreak
+  Result := 'select ' + FFieldList + ' from ' + TableName + ' T0' + sLineBreak
+    + DatasetJoin.AsString
     + FFormatedFilters + sLineBreak
     + IfThen(not FOrderByList.IsEmpty, 'order by ' + FOrderByList, '');
+end;
+
+function TModelEntidadeTabela.Join(AJoinKind: TJoinKind; ATargetTable, ASourceField,
+  ATargetField: string): IModelEntidade;
+begin
+  Result := Self;
+
+  DatasetJoin.Add(
+    TDatasetJoinType.Create(AJoinKind, TableName, ATargetTable, ASourceField, ATargetField)
+  );
 end;
 
 procedure TModelEntidadeTabela.Open;

@@ -9,11 +9,12 @@ uses
   uModelConexaoFactory in 'uModelConexaoFactory.pas',
   uModelEntidadesFactory in 'uModelEntidadesFactory.pas',
   uController in 'Controller\uController.pas',
-  uFilters in 'uFilters.pas',
+  uFilter in 'uFilter.pas',
   uModelEntidadeTabela in 'Model\Entidades\uModelEntidadeTabela.pas',
   uModelEntidadeItem in 'Model\Entidades\uModelEntidadeItem.pas',
   uModelEntidadeVenda in 'Model\Entidades\uModelEntidadeVenda.pas',
-  uModelEntidadeVendaItem in 'Model\Entidades\uModelEntidadeVendaItem.pas';
+  uModelEntidadeVendaItem in 'Model\Entidades\uModelEntidadeVendaItem.pas',
+  uJoin in 'uJoin.pas';
 
 {$R *.res}
 

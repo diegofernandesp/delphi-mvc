@@ -3,12 +3,12 @@ unit uModelEntidadeItem;
 interface
 
 uses
-  uInterface, Data.DB, uFilters, uModelEntidadeTabela;
+  uInterface, Data.DB, uModelEntidadeTabela;
 
 Type
   TModelEntidadeItem = class(TModelEntidadeTabela)
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
     class function New : IModelEntidade;
   end;
